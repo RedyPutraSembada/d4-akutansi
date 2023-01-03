@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HomeAdminController;
 use App\Http\Controllers\FormulirAkademikController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalPerkuliahanController;
@@ -38,6 +39,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth'])->group(function () {
     // Route::resource('/dashboard', [DashboardController::class]);
+    Route::resource('/halaman-home', HomeAdminController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
