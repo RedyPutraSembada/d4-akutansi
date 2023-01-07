@@ -18,6 +18,7 @@
         @include('components.admin.sidebar')
 
         <div id="main">
+            @include('sweetalert::alert')
             @include('components.admin.header')
 
             @yield('content')

@@ -39,10 +39,19 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth'])->group(function () {
     // Route::resource('/dashboard', [DashboardController::class]);
-    Route::resource('/halaman-home', HomeAdminController::class);
+    //* GET
+    Route::get('/halaman-home', [HomeAdminController::class, 'index'])->name('halaman-home');
+    Route::get('/create-hero', [HomeAdminController::class, 'createHero'])->name('create-hero');
+    Route::get('/edit-hero/{id}', [HomeAdminController::class, 'editHero'])->name('edit-hero');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    //* POST
+    Route::post('/store-hero', [HomeAdminController::class, 'storeHero'])->name('store-hero');
+    //* PUT
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/update-hero/{id}', [HomeAdminController::class, 'updateHero'])->name('update-hero');
+    //* DELETE
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/destroy-hero/{id}', [HomeAdminController::class, 'destroyHero'])->name('destroy-hero');
 });
 
 require __DIR__ . '/auth.php';

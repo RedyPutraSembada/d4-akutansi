@@ -15,7 +15,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Bagian HERO</h4>
-                        <a href="#" class="btn btn-outline-primary icon-left mt-3">Tambah Bagian</a>
+                        <a href="{{ route('create-hero') }}" class="btn btn-outline-primary icon-left mt-3">Tambah
+                            Bagian</a>
                     </div>
                     <div class="card-content">
                         <!-- table head dark -->
@@ -23,6 +24,7 @@
                             <table class="table mb-0">
                                 <thead class="thead-dark text-center">
                                     <tr>
+                                        <th>Image Hero</th>
                                         <th>Judul Hero</th>
                                         <th>Sub Judul</th>
                                         <th>SK-Pendirian</th>
@@ -30,28 +32,30 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    <tr>
-                                        <td class="text-bold-500">Program Studi Akuntansi perpajakan Universitkas Pamulang
-                                        </td>
-                                        <td>Smart, Creative & Entrepreneur</td>
-                                        <td class="text-bold-500">Program Studi Sarjana Terapan Akuntansi Perpajakan
-                                            Universitas Pamulang berdiri pada tanggal 22 Februari 2021 berdasarkan Surat
-                                            Keputusan Menteri Pendidikan dan Kebudayaan Republik Indonesia No.
-                                            019/D/DOT/2021</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-outline-warning .icon-left me-2"><i
-                                                        class="bi bi-pencil-square"></i></a>
-                                                <form onsubmit="return confirm('Are you sure ?');" action="#"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger .icon-left"><i
-                                                            class="bi bi-trash3-fill"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($heroes as $hero)
+                                        <tr>
+                                            <td><img src="{{ asset('storage/' . $hero->img_hero) }}" alt="image"
+                                                    style="width: 200px;"></td>
+                                            <td class="text-bold-500">{{ $hero->judul_hero }}</td>
+                                            <td class="text-bold-500">{{ $hero->sub_judul }}</td>
+                                            <td class="text-bold-500">{{ $hero->sk_pendirian }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a href="{{ route('edit-hero', $hero->id) }}"
+                                                        class="btn btn-outline-warning .icon-left me-2"><i
+                                                            class="bi bi-pencil-square"></i></a>
+                                                    <form
+                                                        onsubmit="return confirm('Apakah yakin untuk menghapus data tersebut??');"
+                                                        action="{{ route('destroy-hero', $hero->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-outline-danger .icon-left"><i
+                                                                class="bi bi-trash3-fill"></i></button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

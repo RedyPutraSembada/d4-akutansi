@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Hero;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HomeAdminController extends Controller
 {
@@ -14,7 +17,10 @@ class HomeAdminController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.home.index');
+        $heroes = Hero::all();
+        return view('pages.admin.home.index', [
+            'heroes' => $heroes
+        ]);
     }
 
     /**
@@ -22,9 +28,9 @@ class HomeAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createHero()
     {
-        //
+        return view('pages.admin.home.createHero');
     }
 
     /**
@@ -33,9 +39,20 @@ class HomeAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeHero(Request $request)
     {
-        //
+        $data = $request->validate([
+            'judul_hero' => 'required|max:255',
+            'sub_judul' => 'required',
+            'sk_pendirian' => 'required',
+            'img_hero' => 'required|mimes:jpg,jpeg,png,webp,svg|max:1024'
+        ]);
+
+        $data['img_hero'] = $request->file('img_hero')->store('images/hero', 'public');
+
+        Hero::create($data);
+        Alert::success('Berhasil', 'Data Hero Berhasil Ditambahkan');
+        return redirect(route('halaman-home'));
     }
 
     /**
@@ -55,9 +72,12 @@ class HomeAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editHero($id)
     {
-        //
+        $hero = Hero::findOrFail($id);
+        return view('pages.admin.home.editHero', [
+            'hero' => $hero
+        ]);
     }
 
     /**
@@ -67,9 +87,25 @@ class HomeAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateHero(Request $request, $id)
     {
-        //
+        $hero = Hero::findOrFail($id);
+        $data = $request->validate([
+            'judul_hero' => 'required|max:255',
+            'sub_judul' => 'required',
+            'sk_pendirian' => 'required',
+            'img_hero' => 'mimes:jpg,jpeg,png,webp,svg|max:1024'
+        ]);
+        if ($request->file('img_hero')) {
+            Storage::delete($hero->img_hero);
+            $data['img_hero'] = $request->file('img_hero')->store('images/hero', 'public');
+        } else {
+            $data['img_hero'] = $hero->img_hero;
+        }
+
+        $hero->update($data);
+        Alert::success('Berhasil', 'Data Hero Berhasil Diubah');
+        return redirect(route('halaman-home'));
     }
 
     /**
@@ -78,8 +114,13 @@ class HomeAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyHero($id)
     {
-        //
+        $hero = Hero::findOrFail($id);
+        Storage::delete($hero->img_hero);
+        Hero::destroy($hero->id);
+
+        Alert::success('Berhasil', 'Data Hero Berhasil Dihapus');
+        return redirect(route('halaman-home'));
     }
 }
