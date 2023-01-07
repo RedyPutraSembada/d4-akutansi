@@ -36,9 +36,9 @@
                                         <tr>
                                             <td><img src="{{ asset('storage/' . $hero->img_hero) }}" alt="image"
                                                     style="width: 200px;"></td>
-                                            <td class="text-bold-500">{{ $hero->judul_hero }}</td>
-                                            <td class="text-bold-500">{{ $hero->sub_judul }}</td>
-                                            <td class="text-bold-500">{{ $hero->sk_pendirian }}</td>
+                                            <td>{{ $hero->judul_hero }}</td>
+                                            <td>{{ $hero->sub_judul }}</td>
+                                            <td>{{ $hero->sk_pendirian }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="{{ route('edit-hero', $hero->id) }}"
@@ -73,7 +73,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Bagian Visi Dan HERO vidio</h4>
-                        <a href="#" class="btn btn-outline-primary icon-left mt-3">Tambah Bagian</a>
+                        <a href="{{ route('create-visi') }}" class="btn btn-outline-primary icon-left mt-3">Tambah
+                            Bagian</a>
                     </div>
                     <div class="card-content">
                         <!-- table head dark -->
@@ -91,32 +92,31 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    <tr>
-                                        <td class="text-bold-500">Menjadi program studi unggul yang menghasilkan teknisi
-                                            akuntansi ahli dan perpajakan berjiwa wirausaha yang adaptif dengan teknologi,
-                                            berintegritas, humanis, religius, dan berdaya saing global pada tahun 2025
-                                        </td>
-                                        <td>Prodi Akuntansi Perpajakan D4</td>
-                                        <td>https://www.youtube.com/watch?v=9kwdLPS6ejc&ab_channel=AkuntansiPerpajakanUNPAM
-                                        </td>
-                                        <td>Memiliki jumlah 11323 mahasiswa aktif</td>
-                                        <td>Memiliki 4 regular kelas</td>
-                                        <td>Sudah terbukti menghasilkan lulusan berkualiatas dan berdaya saing dunia di era
-                                            digital</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-outline-warning .icon-left me-2"><i
-                                                        class="bi bi-pencil-square"></i></a>
-                                                <form onsubmit="return confirm('Are you sure ?');" action="#"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger .icon-left"><i
-                                                            class="bi bi-trash3-fill"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($profils as $profil)
+                                        <tr>
+                                            <td>{{ $profil->visi }}</td>
+                                            <td>{{ $profil->judul_hero_vidio }}</td>
+                                            <td>{{ $profil->link_yt_profil }}</td>
+                                            <td>Memiliki jumlah {{ $profil->jmlh_mhs_aktif }} mahasiswa aktif</td>
+                                            <td>Memiliki {{ $profil->jmlh_reg }} regular kelas</td>
+                                            <td>{{ $profil->deskripsi }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a href="{{ route('edit-visi', $profil->id) }}"
+                                                        class="btn btn-outline-warning .icon-left me-2"><i
+                                                            class="bi bi-pencil-square"></i></a>
+                                                    <form
+                                                        onsubmit="return confirm('Apakah yakin untuk menghapus data tersebut??');"
+                                                        action="{{ route('destroy-visi', $profil->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-outline-danger .icon-left"><i
+                                                                class="bi bi-trash3-fill"></i></button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -134,7 +134,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Bagian Misi</h4>
-                        <a href="#" class="btn btn-outline-primary icon-left mt-3">Tambah Bagian</a>
+                        <a href="{{ route('create-misi') }}" class="btn btn-outline-primary icon-left mt-3">Tambah
+                            Bagian</a>
                     </div>
                     <div class="card-content">
                         <!-- table head dark -->
@@ -147,40 +148,26 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    <tr>
-                                        <td>Mewujudkan suatu sarana pendidikan yang murah dan terjangkau oleh seluruh
-                                            lapisan masyarakat tanpa melupakan kualitas</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-outline-warning .icon-left me-2"><i
-                                                        class="bi bi-pencil-square"></i></a>
-                                                <form onsubmit="return confirm('Are you sure ?');" action="#"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger .icon-left"><i
-                                                            class="bi bi-trash3-fill"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Menyelenggarakan pendidikan vokasi bidang akuntansi perpajakan berbasis
-                                            teknologi informasi dengan mengimplementasikan budaya humanis dan religius</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-outline-warning .icon-left me-2"><i
-                                                        class="bi bi-pencil-square"></i></a>
-                                                <form onsubmit="return confirm('Are you sure ?');" action="#"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger .icon-left"><i
-                                                            class="bi bi-trash3-fill"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($misis as $misi)
+                                        <tr>
+                                            <td>{{ $misi->list }}</td>
+                                            <td>
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('edit-misi', $misi->id) }}"
+                                                        class="btn btn-outline-warning .icon-left me-2"><i
+                                                            class="bi bi-pencil-square"></i></a>
+                                                    <form
+                                                        onsubmit="return confirm('Apakah yakin untuk menghapus data tersebut??');"
+                                                        action="{{ route('destroy-misi', $misi->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-outline-danger .icon-right"><i
+                                                                class="bi bi-trash3-fill"></i></button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -198,7 +185,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Bagian Tujuan</h4>
-                        <a href="#" class="btn btn-outline-primary icon-left mt-3">Tambah Bagian</a>
+                        <a href="{{ route('create-tujuan') }}" class="btn btn-outline-primary icon-left mt-3">Tambah
+                            Bagian</a>
                     </div>
                     <div class="card-content">
                         <!-- table head dark -->
@@ -211,40 +199,26 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    <tr>
-                                        <td>Menghasilkan lulusan di bidang akuntansi dan perpajakan yang kompeten,
-                                            berintegritas, dan mengedepankan kualitas dalam memberikan pelayanan</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-outline-warning .icon-left me-2"><i
-                                                        class="bi bi-pencil-square"></i></a>
-                                                <form onsubmit="return confirm('Are you sure ?');" action="#"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger .icon-left"><i
-                                                            class="bi bi-trash3-fill"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Menghasilkan analisis pajak yang berintegritas, menguasai teknologi informasi
-                                            dan regulasi perpajakan beserta perkembangannya</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-outline-warning .icon-left me-2"><i
-                                                        class="bi bi-pencil-square"></i></a>
-                                                <form onsubmit="return confirm('Are you sure ?');" action="#"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger .icon-left"><i
-                                                            class="bi bi-trash3-fill"></i></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($tujuans as $tujuan)
+                                        <tr>
+                                            <td>{{ $tujuan->list }}</td>
+                                            <td>
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('edit-tujuan', $tujuan->id) }}"
+                                                        class="btn btn-outline-warning .icon-left me-2"><i
+                                                            class="bi bi-pencil-square"></i></a>
+                                                    <form
+                                                        onsubmit="return confirm('Apakah yakin untuk menghapus data tersebut??');"
+                                                        action="{{ route('destroy-tujuan', $tujuan->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-outline-danger .icon-left"><i
+                                                                class="bi bi-trash3-fill"></i></button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

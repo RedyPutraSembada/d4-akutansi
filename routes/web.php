@@ -39,19 +39,41 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth'])->group(function () {
     // Route::resource('/dashboard', [DashboardController::class]);
-    //* GET
+    //* Halaman Home
     Route::get('/halaman-home', [HomeAdminController::class, 'index'])->name('halaman-home');
+
+    //* Bagian Hero
     Route::get('/create-hero', [HomeAdminController::class, 'createHero'])->name('create-hero');
-    Route::get('/edit-hero/{id}', [HomeAdminController::class, 'editHero'])->name('edit-hero');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    //* POST
     Route::post('/store-hero', [HomeAdminController::class, 'storeHero'])->name('store-hero');
-    //* PUT
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/edit-hero/{id}', [HomeAdminController::class, 'editHero'])->name('edit-hero');
     Route::put('/update-hero/{id}', [HomeAdminController::class, 'updateHero'])->name('update-hero');
-    //* DELETE
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::delete('/destroy-hero/{id}', [HomeAdminController::class, 'destroyHero'])->name('destroy-hero');
+
+    //* Bagian Visi Dan Hero Vidio
+    Route::get('/create-visi', [HomeAdminController::class, 'createVisi'])->name('create-visi');
+    Route::post('/store-visi', [HomeAdminController::class, 'storeVisi'])->name('store-visi');
+    Route::get('/edit-visi/{id}', [HomeAdminController::class, 'editVisi'])->name('edit-visi');
+    Route::put('/update-visi/{id}', [HomeAdminController::class, 'updateVisi'])->name('update-visi');
+    Route::delete('/destroy-visi/{id}', [HomeAdminController::class, 'destroyVisi'])->name('destroy-visi');
+
+    //* Bagian Misi
+    Route::get('/create-misi', [HomeAdminController::class, 'createMisi'])->name('create-misi');
+    Route::post('/store-misi', [HomeAdminController::class, 'storeMisi'])->name('store-misi');
+    Route::get('/edit-misi/{id}', [HomeAdminController::class, 'editMisi'])->name('edit-misi');
+    Route::put('/update-misi/{id}', [HomeAdminController::class, 'updateMisi'])->name('update-misi');
+    Route::delete('/destroy-misi/{id}', [HomeAdminController::class, 'destroyMisi'])->name('destroy-misi');
+
+    //* Bagian Misi
+    Route::get('/create-tujuan', [HomeAdminController::class, 'createTujuan'])->name('create-tujuan');
+    Route::post('/store-tujuan', [HomeAdminController::class, 'storeTujuan'])->name('store-tujuan');
+    Route::get('/edit-tujuan/{id}', [HomeAdminController::class, 'editTujuan'])->name('edit-tujuan');
+    Route::put('/update-tujuan/{id}', [HomeAdminController::class, 'updateTujuan'])->name('update-tujuan');
+    Route::delete('/destroy-tujuan/{id}', [HomeAdminController::class, 'destroyTujuan'])->name('destroy-tujuan');
+
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';

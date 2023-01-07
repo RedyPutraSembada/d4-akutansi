@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('profils', function (Blueprint $table) {
             $table->id();
             $table->text('visi');
-            $table->string('link_yt_profil');
+            $table->text('link_yt_profil');
             $table->string('judul_hero_vidio');
             $table->bigInteger('jmlh_mhs_aktif');
             $table->integer('jmlh_reg');
