@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class BeritaAcaraController extends Controller
+class BeritaAcaraAdminController extends Controller
 {
     /**
      * Display a listing of the resource.

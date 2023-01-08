@@ -54,7 +54,7 @@
                 <li class="sidebar-item">
                     <a href="{{ route('halaman-home') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span>Halaman Home</span>
+                        <span>Menu Home</span>
                     </a>
                 </li>
 
@@ -65,16 +65,11 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
+                <li class="sidebar-item">
+                    <a href="{{ route('halaman-profil') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span>Halaman Home</span>
+                        <span>Menu Profil</span>
                     </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="component-alert.html">Alert</a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </div>

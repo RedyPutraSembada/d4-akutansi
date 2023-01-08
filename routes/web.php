@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\BeritaAcaraController;
+use App\Http\Controllers\Admin\BeritaAcaraAdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeAdminController;
+use App\Http\Controllers\Admin\ProfilAdminController;
 use App\Http\Controllers\FormulirAkademikController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalPerkuliahanController;
@@ -72,8 +73,17 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/destroy-tujuan/{id}', [HomeAdminController::class, 'destroyTujuan'])->name('destroy-tujuan');
 
     //? Halaman Berita Acara
-    Route::resource('/berita-acara', BeritaAcaraController::class);
+    Route::resource('/berita-acara', BeritaAcaraAdminController::class);
 
+    //? Halaman Home
+    Route::get('/halaman-profil', [ProfilAdminController::class, 'index'])->name('halaman-profil');
+
+    //* Struktur Organisasi
+    Route::get('/create-struktur', [ProfilAdminController::class, 'createStruktur'])->name('create-struktur');
+    Route::post('/store-struktur', [ProfilAdminController::class, 'storeStruktur'])->name('store-struktur');
+    Route::get('/edit-struktur/{id}', [ProfilAdminController::class, 'editStruktur'])->name('edit-struktur');
+    Route::put('/update-struktur/{id}', [ProfilAdminController::class, 'updateStruktur'])->name('update-struktur');
+    Route::delete('/destroy-struktur/{id}', [ProfilAdminController::class, 'destroyStruktur'])->name('destroy-struktur');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
