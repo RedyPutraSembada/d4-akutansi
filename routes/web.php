@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BeritaAcaraController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeAdminController;
 use App\Http\Controllers\FormulirAkademikController;
@@ -39,7 +40,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth'])->group(function () {
     // Route::resource('/dashboard', [DashboardController::class]);
-    //* Halaman Home
+    //? Halaman Home
     Route::get('/halaman-home', [HomeAdminController::class, 'index'])->name('halaman-home');
 
     //* Bagian Hero
@@ -69,6 +70,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit-tujuan/{id}', [HomeAdminController::class, 'editTujuan'])->name('edit-tujuan');
     Route::put('/update-tujuan/{id}', [HomeAdminController::class, 'updateTujuan'])->name('update-tujuan');
     Route::delete('/destroy-tujuan/{id}', [HomeAdminController::class, 'destroyTujuan'])->name('destroy-tujuan');
+
+    //? Halaman Berita Acara
+    Route::resource('/berita-acara', BeritaAcaraController::class);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
