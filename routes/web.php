@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AkademikAdminController;
 use App\Http\Controllers\Admin\BeritaAcaraAdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeAdminController;
@@ -84,6 +85,44 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit-struktur/{id}', [ProfilAdminController::class, 'editStruktur'])->name('edit-struktur');
     Route::put('/update-struktur/{id}', [ProfilAdminController::class, 'updateStruktur'])->name('update-struktur');
     Route::delete('/destroy-struktur/{id}', [ProfilAdminController::class, 'destroyStruktur'])->name('destroy-struktur');
+
+    //? Halaman Akademik
+    Route::get('/halaman-akademik', [AkademikAdminController::class, 'index'])->name('halaman-akademik');
+
+    //* Kurikulum
+    Route::get('/create-kurikulum', [AkademikAdminController::class, 'createKurikulum'])->name('create-kurikulum');
+    Route::post('/store-kurikulum', [AkademikAdminController::class, 'storeKurikulum'])->name('store-kurikulum');
+    Route::get('/edit-kurikulum/{id}', [AkademikAdminController::class, 'editKurikulum'])->name('edit-kurikulum');
+    Route::put('/update-kurikulum/{id}', [AkademikAdminController::class, 'updateKurikulum'])->name('update-kurikulum');
+    Route::delete('/destroy-kurikulum/{id}', [AkademikAdminController::class, 'destroyKurikulum'])->name('destroy-kurikulum');
+
+    //* Jadwal-Perkuliahan
+    Route::get('/create-jadwal-perkuliahan', [AkademikAdminController::class, 'createJadwalPerkuliahan'])->name('create-jadwal-perkuliahan');
+    Route::post('/store-jadwal-perkuliahan', [AkademikAdminController::class, 'storeJadwalPerkuliahan'])->name('store-jadwal-perkuliahan');
+    Route::get('/edit-jadwal-perkuliahan/{id}', [AkademikAdminController::class, 'editJadwalPerkuliahan'])->name('edit-jadwal-perkuliahan');
+    Route::put('/update-jadwal-perkuliahan/{id}', [AkademikAdminController::class, 'updateJadwalPerkuliahan'])->name('update-jadwal-perkuliahan');
+    Route::delete('/destroy-jadwal-perkuliahan/{id}', [AkademikAdminController::class, 'destroyJadwalPerkuliahan'])->name('destroy-jadwal-perkuliahan');
+
+    //* Ketetntuan Revisi
+    Route::get('/create-ketentuan-revisi', [AkademikAdminController::class, 'createKetRevisi'])->name('create-ketentuan-revisi');
+    Route::post('/store-ketentuan-revisi', [AkademikAdminController::class, 'storeKetRevisi'])->name('store-ketentuan-revisi');
+    Route::get('/edit-ketentuan-revisi/{id}', [AkademikAdminController::class, 'editKetRevisi'])->name('edit-ketentuan-revisi');
+    Route::put('/update-ketentuan-revisi/{id}', [AkademikAdminController::class, 'updateKetRevisi'])->name('update-ketentuan-revisi');
+    Route::delete('/destroy-ketentuan-revisi/{id}', [AkademikAdminController::class, 'destroyKetRevisi'])->name('destroy-ketentuan-revisi');
+
+    //* Tabel-Jadwal-Perkuliahan
+    Route::get('/create-tabel-jadwal-perkuliahan', [AkademikAdminController::class, 'createTblJadwalPerkuliahan'])->name('create-tabel-jadwal-perkuliahan');
+    Route::post('/store-tabel-jadwal-perkuliahan', [AkademikAdminController::class, 'storeTblJadwalPerkuliahan'])->name('store-tabel-jadwal-perkuliahan');
+    Route::get('/edit-tabel-jadwal-perkuliahan/{id}', [AkademikAdminController::class, 'editTblJadwalPerkuliahan'])->name('edit-tabel-jadwal-perkuliahan');
+    Route::put('/update-tabel-jadwal-perkuliahan/{id}', [AkademikAdminController::class, 'updateTblJadwalPerkuliahan'])->name('update-tabel-jadwal-perkuliahan');
+    Route::delete('/destroy-tabel-jadwal-perkuliahan/{id}', [AkademikAdminController::class, 'destroyTblJadwalPerkuliahan'])->name('destroy-tabel-jadwal-perkuliahan');
+
+    //* Formulir Akademik
+    Route::get('/create-formulir-akademik', [AkademikAdminController::class, 'createFormulirAkademik'])->name('create-formulir-akademik');
+    Route::post('/store-formulir-akademik', [AkademikAdminController::class, 'storeFormulirAkademik'])->name('store-formulir-akademik');
+    Route::get('/edit-formulir-akademik/{id}', [AkademikAdminController::class, 'editFormulirAkademik'])->name('edit-formulir-akademik');
+    Route::put('/update-formulir-akademik/{id}', [AkademikAdminController::class, 'updateFormulirAkademik'])->name('update-formulir-akademik');
+    Route::delete('/destroy-formulir-akademik/{id}', [AkademikAdminController::class, 'destroyFormulirAkademik'])->name('destroy-formulir-akademik');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

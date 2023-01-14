@@ -71,6 +71,13 @@
                         <span>Menu Profil</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('halaman-akademik') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Menu Akademik</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
