@@ -78,6 +78,27 @@
                         <span>Menu Akademik</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('halaman-layanan-akademik') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Menu Layanan Akademik</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('halaman-lulusan') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Menu Lulusan</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('halaman-contact') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Menu Contact</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

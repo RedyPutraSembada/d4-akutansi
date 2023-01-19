@@ -5,8 +5,8 @@
         <div class="container" data-aos="fade-up">
 
             <!-- <div class="section-header" id="visi">
-                  <h3>JADWAL PERKULIAHAN SEMESTER GANJIL – 2022/2023</h3>
-                </div> -->
+                      <h3>JADWAL PERKULIAHAN SEMESTER GANJIL – 2022/2023</h3>
+                    </div> -->
 
             <div class="row g-4 g-lg-12" data-aos="fade-up" data-aos-delay="200">
 
@@ -63,7 +63,7 @@
                                 3. MAP berwarna Kuning (Nama & NIM)<br>
 
                                 Proses legalisir dokumen kurang lebih 4 – 6 hari kerja.</p>
-                        </div><!-- End Tab 3 Content -->
+                        </div>
 
                     </div>
 

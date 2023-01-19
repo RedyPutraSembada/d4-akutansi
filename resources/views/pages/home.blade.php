@@ -208,18 +208,6 @@
                     <div class="swiper-slide"><img
                             src="{{ asset('template/d4-akutansi/assets/img/clients/yayasan.jpg') }}" class="img-fluid"
                             alt=""></div>
-                    <div class="swiper-slide"><img
-                            src="{{ asset('template/d4-akutansi/assets/img/clients/client-5.png') }}" class="img-fluid"
-                            alt=""></div>
-                    <div class="swiper-slide"><img
-                            src="{{ asset('template/d4-akutansi/assets/img/clients/client-6.png') }}" class="img-fluid"
-                            alt=""></div>
-                    <div class="swiper-slide"><img
-                            src="{{ asset('template/d4-akutansi/assets/img/clients/client-7.png') }}" class="img-fluid"
-                            alt=""></div>
-                    <div class="swiper-slide"><img
-                            src="{{ asset('template/d4-akutansi/assets/img/clients/client-8.png') }}" class="img-fluid"
-                            alt=""></div>
                 </div>
             </div>
 

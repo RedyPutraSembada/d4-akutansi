@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Hero;
 use App\Models\Misi;
 use App\Models\Profil;
+use App\Models\SlideSwipe;
 use App\Models\Tujuan;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class HomeAdminController extends Controller
      */
     public function index()
     {
+        $imageSwipes = SlideSwipe::all();
         $heroes = Hero::all();
         $profils = Profil::all();
         $misis = Misi::all();
@@ -28,7 +30,8 @@ class HomeAdminController extends Controller
             'heroes' => $heroes,
             'profils' => $profils,
             'misis' => $misis,
-            'tujuans' => $tujuans
+            'tujuans' => $tujuans,
+            'imageSwipes' => $imageSwipes,
         ]);
     }
 
@@ -53,11 +56,6 @@ class HomeAdminController extends Controller
         Hero::create($data);
         Alert::success('Berhasil', 'Data Hero Berhasil Ditambahkan');
         return redirect(route('halaman-home'));
-    }
-
-    public function show($id)
-    {
-        //
     }
 
     public function editHero($id)
@@ -249,4 +247,66 @@ class HomeAdminController extends Controller
         return redirect(route('halaman-home'));
     }
     //? Penutup Aksi Bagian Misi
+
+    //? Aksi Bagian Image Slide Swipe
+    public function createSlideSwipe()
+    {
+        return view('pages.admin.home.slide-swipe.createSlideSwipe');
+    }
+
+    public function storeSlideSwipe(Request $request)
+    {
+        $data = $request->validate([
+            'image_slide_swipes' => 'required|mimes:jpg,jpeg,png,webp,svg|max:1024'
+        ]);
+
+        $data['image_slide_swipes'] = $request->file('image_slide_swipes')->store('images/image-slide-swipe', 'public');
+
+        SlideSwipe::create($data);
+        Alert::success('Berhasil', 'Data Image Slide Swipe Berhasil Ditambahkan');
+        return redirect(route('halaman-home'));
+    }
+
+    public function show($id)
+    {
+        //
+    }
+
+    public function editSlideSwipe($id)
+    {
+        $slideSwipe = SlideSwipe::findOrFail($id);
+        return view('pages.admin.home.slide-swipe.editSlideSwipe', [
+            'slideSwipe' => $slideSwipe
+        ]);
+    }
+
+    public function updateSlideSwipe(Request $request, $id)
+    {
+        $slideSwipe = SlideSwipe::findOrFail($id);
+        $data = $request->validate([
+            'image_slide_swipes' => 'mimes:jpg,jpeg,png,webp,svg|max:1024'
+        ]);
+        if ($request->file('image_slide_swipes')) {
+            Storage::delete($slideSwipe->image_slide_swipes);
+            $data['image_slide_swipes'] = $request->file('image_slide_swipes')->store('images/image-slide-swipe', 'public');
+        } else {
+            Alert::warning('Tidak Berubah', 'Data Image Slide Swipe Tidak Ada Yang Diubah');
+            return redirect(route('halaman-home'));
+        }
+
+        $slideSwipe->update($data);
+        Alert::success('Berhasil', 'Data Image Slide Swipe Berhasil Diubah');
+        return redirect(route('halaman-home'));
+    }
+
+    public function destroySlideSwipe($id)
+    {
+        $slideSwipe = SlideSwipe::findOrFail($id);
+        Storage::delete($slideSwipe->image_slide_swipes);
+        SlideSwipe::destroy($slideSwipe->id);
+
+        Alert::success('Berhasil', 'Data Image Slide Swipe Berhasil Dihapus');
+        return redirect(route('halaman-home'));
+    }
+    //? Penutup Aksi Bagian Image Slide Swipe
 }

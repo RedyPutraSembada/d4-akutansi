@@ -12,8 +12,6 @@
                                 <p>Alamat : Jl. Surya Kencana No.1, Pamulang Bar., Kec. Pamulang,
                                     Kota Tangerang Selatan, Banten <br>
                                     Kode pos : 15417</p>
-                                <p>&nbsp;</p>
-                                <br>
                                 <br>
 
                                 <p> <strong>Universitas Pamulang Menyediakan Layanan Informasi Melalui:</strong></p>

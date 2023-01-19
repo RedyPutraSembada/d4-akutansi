@@ -27,8 +27,7 @@
                     Terapan Fakultas Ekonomi dan Bisnis Universitas Pamulang. Lulusan profil entrepreneur memiliki kemampuan
                     dalam memanfaatkan peluang di bidang jasa perpajakan dan akuntansi keuangan.</p>
                 <br>
-                <h3 class="text-center tekt-bold">PROFIL LULUSAN </h3>
-                <h3>PRODI AKUNTANSI PERPAJAKAN PROGRAM SARJANA TERAPAN</h3>
+                <h3 class="text-center tekt-bold">PROFIL LULUSAN <br> PRODI AKUNTANSI PERPAJAKAN PROGRAM SARJANA TERAPAN</h3>
 
                 <div>
                     <table class="table" border="1" cellpadding="10">

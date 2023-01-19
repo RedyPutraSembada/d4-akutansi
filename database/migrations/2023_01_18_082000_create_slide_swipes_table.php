@@ -13,17 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ujian_susulans', function (Blueprint $table) {
+        Schema::create('slide_swipes', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->text('deskripsi');
-            $table->string('img');
-            $table->string('title_table');
-            $table->string('shift');
-            $table->string('tgl_pendaftaran');
-            $table->string('ruang_pelaksanaan');
-            $table->string('tgl_pelaksanaan');
-            $table->string('jam_pelaksanaan');
+            $table->string('image_slide_swipes');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -36,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ujian_susulans');
+        Schema::dropIfExists('slide_swipes');
     }
 };

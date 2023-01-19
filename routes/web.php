@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Admin\AkademikAdminController;
 use App\Http\Controllers\Admin\BeritaAcaraAdminController;
+use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeAdminController;
+use App\Http\Controllers\Admin\LayananAkademikAdminController;
+use App\Http\Controllers\Admin\LulusanAdminController;
 use App\Http\Controllers\Admin\ProfilAdminController;
 use App\Http\Controllers\FormulirAkademikController;
 use App\Http\Controllers\HomeController;
@@ -73,6 +76,13 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/update-tujuan/{id}', [HomeAdminController::class, 'updateTujuan'])->name('update-tujuan');
     Route::delete('/destroy-tujuan/{id}', [HomeAdminController::class, 'destroyTujuan'])->name('destroy-tujuan');
 
+    //* Bagian Image Slide Swipe
+    Route::get('/create-slide-swipe', [HomeAdminController::class, 'createSlideSwipe'])->name('create-slide-swipe');
+    Route::post('/store-slide-swipe', [HomeAdminController::class, 'storeSlideSwipe'])->name('store-slide-swipe');
+    Route::get('/edit-slide-swipe/{id}', [HomeAdminController::class, 'editSlideSwipe'])->name('edit-slide-swipe');
+    Route::put('/update-slide-swipe/{id}', [HomeAdminController::class, 'updateSlideSwipe'])->name('update-slide-swipe');
+    Route::delete('/destroy-slide-swipe/{id}', [HomeAdminController::class, 'destroySlideSwipe'])->name('destroy-slide-swipe');
+
     //? Halaman Berita Acara
     Route::resource('/berita-acara', BeritaAcaraAdminController::class);
 
@@ -123,6 +133,50 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit-formulir-akademik/{id}', [AkademikAdminController::class, 'editFormulirAkademik'])->name('edit-formulir-akademik');
     Route::put('/update-formulir-akademik/{id}', [AkademikAdminController::class, 'updateFormulirAkademik'])->name('update-formulir-akademik');
     Route::delete('/destroy-formulir-akademik/{id}', [AkademikAdminController::class, 'destroyFormulirAkademik'])->name('destroy-formulir-akademik');
+
+    //? Halaman Layanan Akademik
+    Route::get('/halaman-layanan-akademik', [LayananAkademikAdminController::class, 'index'])->name('halaman-layanan-akademik');
+
+    //* Ujian Susulan
+    Route::get('/create-ujian-susulan', [LayananAkademikAdminController::class, 'createUjianSusulan'])->name('create-ujian-susulan');
+    Route::post('/store-ujian-susulan', [LayananAkademikAdminController::class, 'storeUjianSusulan'])->name('store-ujian-susulan');
+    Route::get('/edit-ujian-susulan/{id}', [LayananAkademikAdminController::class, 'editUjianSusulan'])->name('edit-ujian-susulan');
+    Route::put('/update-ujian-susulan/{id}', [LayananAkademikAdminController::class, 'updateUjianSusulan'])->name('update-ujian-susulan');
+    Route::delete('/destroy-ujian-susulan/{id}', [LayananAkademikAdminController::class, 'destroyUjianSusulan'])->name('destroy-ujian-susulan');
+
+    //? Halaman Lulusan
+    Route::get('/halaman-lulusan', [LulusanAdminController::class, 'index'])->name('halaman-lulusan');
+
+    //* Ijazah Transkip Nilai
+    Route::get('/create-ijazah-transkip-nilai', [LulusanAdminController::class, 'createIjazahTranskip'])->name('create-ijazah-transkip-nilai');
+    Route::post('/store-ijazah-transkip-nilai', [LulusanAdminController::class, 'storeIjazahTranskip'])->name('store-ijazah-transkip-nilai');
+    Route::get('/edit-ijazah-transkip-nilai/{id}', [LulusanAdminController::class, 'editIjazahTranskip'])->name('edit-ijazah-transkip-nilai');
+    Route::put('/update-ijazah-transkip-nilai/{id}', [LulusanAdminController::class, 'updateIjazahTranskip'])->name('update-ijazah-transkip-nilai');
+    Route::delete('/destroy-ijazah-transkip-nilai/{id}', [LulusanAdminController::class, 'destroyIjazahTranskip'])->name('destroy-ijazah-transkip-nilai');
+
+    //* Profil Lulusan
+    Route::get('/create-profil-lulusan', [LulusanAdminController::class, 'createProfilLulusan'])->name('create-profil-lulusan');
+    Route::post('/store-profil-lulusan', [LulusanAdminController::class, 'storeProfilLulusan'])->name('store-profil-lulusan');
+    Route::get('/edit-profil-lulusan/{id}', [LulusanAdminController::class, 'editProfilLulusan'])->name('edit-profil-lulusan');
+    Route::put('/update-profil-lulusan/{id}', [LulusanAdminController::class, 'updateProfilLulusan'])->name('update-profil-lulusan');
+    Route::delete('/destroy-profil-lulusan/{id}', [LulusanAdminController::class, 'destroyProfilLulusan'])->name('destroy-profil-lulusan');
+
+    //* Tabel Profile Lulusan
+    Route::get('/create-tabel-profil-lulusan', [LulusanAdminController::class, 'createTabelProfilLulusan'])->name('create-tabel-profil-lulusan');
+    Route::post('/store-tabel-profil-lulusan', [LulusanAdminController::class, 'storeTabelProfilLulusan'])->name('store-tabel-profil-lulusan');
+    Route::get('/edit-tabel-profil-lulusan/{id}', [LulusanAdminController::class, 'editTabelProfilLulusan'])->name('edit-tabel-profil-lulusan');
+    Route::put('/update-tabel-profil-lulusan/{id}', [LulusanAdminController::class, 'updateTabelProfilLulusan'])->name('update-tabel-profil-lulusan');
+    Route::delete('/destroy-tabel-profil-lulusan/{id}', [LulusanAdminController::class, 'destroyTabelProfilLulusan'])->name('destroy-tabel-profil-lulusan');
+
+    //? Halaman Contact
+    Route::get('/halaman-contact', [ContactAdminController::class, 'index'])->name('halaman-contact');
+
+    //* Contact
+    Route::get('/create-contact', [ContactAdminController::class, 'createContact'])->name('create-contact');
+    Route::post('/store-contact', [ContactAdminController::class, 'storeContact'])->name('store-contact');
+    Route::get('/edit-contact/{id}', [ContactAdminController::class, 'editContact'])->name('edit-contact');
+    Route::put('/update-contact/{id}', [ContactAdminController::class, 'updateContact'])->name('update-contact');
+    Route::delete('/destroy-contact/{id}', [ContactAdminController::class, 'destroyContact'])->name('destroy-contact');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
