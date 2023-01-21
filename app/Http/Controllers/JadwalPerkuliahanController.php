@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JadwalPerkuliahan;
+use App\Models\KetenRevisiKrs;
+use App\Models\StrukturOrganisasi;
+use App\Models\TabelJadwalPerkuliahan;
 use Illuminate\Http\Request;
 
 class JadwalPerkuliahanController extends Controller
@@ -13,72 +17,15 @@ class JadwalPerkuliahanController extends Controller
      */
     public function index()
     {
-        return view('pages.jadwalPerkuliahan');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $strukturOrganisasi = StrukturOrganisasi::all()->first();
+        $jadwalPerkuliahan = JadwalPerkuliahan::all()->first();
+        $ketentuanRevisis = KetenRevisiKrs::all();
+        $tabelJadwalPerkuliahans = TabelJadwalPerkuliahan::all();
+        return view('pages.jadwalPerkuliahan', [
+            'strukturOrganisasi' => $strukturOrganisasi,
+            'jadwalPerkuliahan' => $jadwalPerkuliahan,
+            'ketentuanRevisis' => $ketentuanRevisis,
+            'tabelJadwalPerkuliahans' => $tabelJadwalPerkuliahans,
+        ]);
     }
 }

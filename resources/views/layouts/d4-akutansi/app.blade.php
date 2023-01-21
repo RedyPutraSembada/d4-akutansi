@@ -47,8 +47,8 @@
             aria-hidden="true">
             <div class="modal-dialog bg-transparent">
                 <div class="modal-content bg-transparent align-items-center">
-                    <img src="{{ asset('template/d4-akutansi/assets/img/Struktur_Organisasi_Prodi_Manajemen_UNPAM_02.jpg') }}"
-                        alt="" width="1000px" class="align-items-lg-center">
+                    <img src="{{ asset('storage/' . $strukturOrganisasi->img_struktur_organisasi) }}" alt=""
+                        width="1000px" class="align-items-lg-center">
                     <div class="">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
